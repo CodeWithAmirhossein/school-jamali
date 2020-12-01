@@ -1,5 +1,10 @@
-from os import system
-from sys import argv
+# git commit -m "Add new version box" --amend --no-edit --date "Mon 21 Dec 2021 20:19:19"
 
-for i in range(1, 30):
-    system(f'git commit --amend --no-edit --date "Mon {i} Dec 2020 20:19:19" && git pull --no-edit && git push')
+import os
+import sys
+
+for i in range(1, 32):
+    os.system('rm -rf x.py')
+    os.system('touch x.py')
+    os.system('git add -A')
+    os.system(f'git commit -m "Create x.py" --amend --no-edit --date "Mon {i} {sys.argv[1]} 2020 20:19:19" && git push --force')
