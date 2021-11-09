@@ -10,6 +10,11 @@ if (isset($_POST['postit'])) {
     $text = $_POST['posttext'];
 
     mysqli_query($db, "INSERT INTO `jamaliposts` (`subject`, `posttext`) VALUES ('$subject', '$text')");
+    ?>
+    <script>
+        window.location.replace('.');
+    </script>
+    <?php
 }
 
 // Login
@@ -19,6 +24,11 @@ if (isset($_POST['loginform'])) {
 
     if ($phone == '9014784361' && $pass == 'admin') {
         $_SESSION['islogin'] = 'yes';
+        ?>
+        <script>
+            window.location.replace('.');
+        </script>
+        <?php
     }
 }
 
@@ -78,7 +88,6 @@ if ($_GET['action'] == 'logout') {
                 <?php
                     if ($_SESSION['islogin'] == 'yes') {
                         ?>
-                            <p><b>پست جدید</b></p>
                             <form method="post" action="index.php">
                                 <label class="form-label" for="subject">موضوع پست</label>
                                 <input class="form-control" id="subject" name="subject" placeholder="موضوع پست را وارد کنید">
@@ -113,9 +122,7 @@ if ($_GET['action'] == 'logout') {
         </div>
         <div class="col-md-9">
             <?php
-
-                    $postsQ = "SELECT * FROM jamaliposts ORDER BY `row` DESC";
-                    $posts = mysqli_query($db, $postsQ);
+                    $posts = mysqli_query($db, "SELECT * FROM jamaliposts ORDER BY `row` DESC");
 
                     if (mysqli_num_rows($posts) != 0) {
                         while ($jpost = mysqli_fetch_assoc($posts)) {
@@ -131,7 +138,6 @@ if ($_GET['action'] == 'logout') {
                     else {
                         echo "پستی یافت نشد.";
                     }
-
             ?>
         </div>
     </div>
