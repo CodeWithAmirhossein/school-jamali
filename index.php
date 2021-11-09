@@ -2,6 +2,16 @@
 
 session_start();
 
+$db = mysqli_connect('localhost', 'amir', 'amir', 'jamali');
+
+// Post
+if (isset($_POST['postit'])) {
+    $subject = $_POST['subject'];
+    $text = $_POST['posttext'];
+
+    mysqli_query($db, "INSERT INTO `jamaliposts` (`subject`, `posttext`) VALUES ('$subject', '$text')");
+}
+
 // Login
 if (isset($_POST['loginform'])) {
     $phone = $_POST['phonenumber'];
